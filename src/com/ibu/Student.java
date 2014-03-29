@@ -3,17 +3,19 @@ package com.ibu;
 import java.sql.*;
 import java.util.Date;
 
+import com.ibu.DatabaseHelper.Country;
+
 public class Student {
     //private int _studentid; //TODO : Implement getid() method
     private String _name;
     private String _surname;
-    private java.util.Date _dateofbirth;
+    private java.util.Date _dateofbirth; 
     private String _birthtown;
     private String _birthcity;
-    private String _birthcountry;
+    private Country _birthcountry;
     private String _currenttown;
     private String _currentcity;
-    private String _currentcounry;
+    private Country _currentcounry;
     private String _currentadress;
     private String _mobile;
     private boolean _isInserted = false;
@@ -22,16 +24,16 @@ public class Student {
     public void SetSurname(String surname) {this._surname = surname; }
     public void SetBirthTown(String birthtown) { this._birthtown = birthtown;}
     public void SetBirthCity(String birthcity) {this._birthcity = birthcity; }
-    public void SetBirthCountry(String birthcountry) {this._birthcountry = birthcountry; }
+    public void SetBirthCountry(Country birthcountry) {this._birthcountry = birthcountry; }
     public void SetCurrentAdress(String currentadress) {this._currentadress = currentadress;}
-    public void SetCurrenTown(String currenttown) {this._currenttown = currenttown; }
+    public void SetCurrentTown(String currenttown) {this._currenttown = currenttown; }
     public void SetCurrentCity(String currentcity) { this._currentcity = currentcity;}
-    public void SetCurrentCountry(String currentcountry) {this._currentcounry = currentcountry;}
+    public void SetCurrentCountry(Country currentcountry) {this._currentcounry = currentcountry;}
     public void SetMobile(String mobile) {this._mobile = mobile;}
 
     public void SetDateOfBirth(String dateofbirth) {
         @SuppressWarnings("deprecation")
-		java.util.Date birth = new Date(dateofbirth);
+		java.util.Date birth = new Date(dateofbirth); //TODO: java.util.Date is now deprecated. Change to DateFormat.Parse(String s)
         this._dateofbirth = birth;
     }
 
@@ -40,7 +42,7 @@ public class Student {
         CreateDatabaseConnection();
     }
 
-    public Student(String name, String surname,java.util.Date dateofbirth ,String birthtown, String birthcity, String birthcountry, String currentown, String currentcity, String currentcountry, String currentadress, String mobile)
+    public Student(String name, String surname,java.util.Date dateofbirth ,String birthtown, String birthcity, Country birthcountry, String currentown, String currentcity, Country currentcountry, String currentadress, String mobile)
     {
         CreateDatabaseConnection();
 
@@ -63,7 +65,7 @@ public class Student {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqlite:ibu.university.sqlite");
+            conn = DatabaseHelper.GetConnection();
             Statement stmt = null;
 
             stmt = conn.createStatement();
@@ -109,7 +111,7 @@ public class Student {
                 _isInserted = true;
             } catch (Exception e)
             {
-                System.out.println("error");
+                System.err.println(e.getLocalizedMessage());
             }
         }
     }

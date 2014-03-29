@@ -31,10 +31,10 @@ public class Administration {
         Connection conn = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqlite:ibu.university.sqlite");
+            conn = DatabaseHelper.GetConnection();
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("INSERT INTO Users " +
-                    "VALUES (?,'"+eusername+"','"+epassword+"','"+role+"')");
+                    "VALUES (?,'"+role+"','"+eusername+"','"+epassword+"')");
 
             System.out.println("Insertion completed"); //TODO : Just for testing purposes
         } catch (Exception e)
@@ -50,21 +50,21 @@ public class Administration {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqlite:ibu.university.sqlite");
+            conn = DatabaseHelper.GetConnection();
             Statement stmt = null;
 
             stmt = conn.createStatement();
 
             String sql = " CREATE TABLE main.Users" +
                     "(userid INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL," +
+                    " userrole TEXT NOT NULL," +
                     " username TEXT NOT NULL," +
-                    " password TEXT NOT NULL," +
-                    " userrole TEXT NOT NULL)";
+                    " password TEXT NOT NULL)";
             stmt.executeUpdate(sql);
 
             stmt.close();
             conn.close();
-            System.out.println("Database connected");
+            System.out.println("Administration database connected");
 
         } catch ( Exception e ) {
             //Raise exception if table is already created
