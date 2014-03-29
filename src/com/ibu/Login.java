@@ -44,7 +44,7 @@ public class Login {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqlite:ibu.university.sqlite");
+            conn = DatabaseHelper.GetConnection();
             Statement stmt = null;
 
             stmt = conn.createStatement();

@@ -31,7 +31,10 @@ public class Student {
     public void SetCurrentCountry(Country currentcountry) {this._currentcounry = currentcountry;}
     public void SetMobile(String mobile) {this._mobile = mobile;}
 
-    public void SetDateOfBirth(String dateofbirth) {
+    public void SetDateOfBirth(int _day,int _month, int _year) { 
+    	String dateofbirth;
+    	dateofbirth = _month+"/"+_day+"/"+_year;
+    	
         @SuppressWarnings("deprecation")
 		java.util.Date birth = new Date(dateofbirth); //TODO: java.util.Date is now deprecated. Change to DateFormat.Parse(String s)
         this._dateofbirth = birth;

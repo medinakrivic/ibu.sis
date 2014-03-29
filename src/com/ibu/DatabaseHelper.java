@@ -18,7 +18,7 @@ public class DatabaseHelper {
 	private final static String Password = "burch";
 	private final static String ConnStr = "jdbc:sqlite:ibu.university.sqlite";
 	
-	enum Country{BiH,Croatia,Serbia,Turkey}
+	enum Country{BiH,Croatia,Serbia,Turkey} //TODO: Add countries
 	
 	public static Connection GetConnection() throws SQLException
 	{

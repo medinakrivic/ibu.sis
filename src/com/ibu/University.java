@@ -1,8 +1,6 @@
 //Main class of the project
-
 package com.ibu;
 
-import com.ibu.User.UserRole;
 import com.ibu.DatabaseHelper.Country;
 
 public class University {
@@ -14,13 +12,13 @@ public class University {
 		Said.SetBirthTown(null);
 		Said.SetBirthCity("Zenica");
 		Said.SetBirthCountry(Country.BiH);
-		Said.SetDateOfBirth("03/19/1995");
+		Said.SetDateOfBirth(19,3,1995);
 		Said.SetCurrentAdress("Senada Poturka Senčija 76A");
 		Said.SetCurrentTown("Dobrinja");
 		Said.SetCurrentCity("Sarajevo");
 		Said.SetCurrentCountry(Country.BiH);
 		Said.SetMobile("+38762628381");
-		//Said.InsertIntoDatabase();
+		Said.InsertIntoDatabase();
 	}
 
 }
