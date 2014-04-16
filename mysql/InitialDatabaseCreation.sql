@@ -1,0 +1,154 @@
+#International Burch University
+#StudentIS initial database
+
+CREATE DATABASE IF NOT EXISTS studentis;
+ 
+USE studentis;
+ 
+CREATE TABLE IF NOT EXISTS States(
+    StateID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(150) NOT NULL
+    );
+ 
+CREATE TABLE IF NOT EXISTS Educators(
+    Educatorid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Surname VARCHAR(50) NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Adress VARCHAR(50) NOT NULL,
+    CityID VARCHAR(50) NOT NULL,
+    Phone VARCHAR(50) NOT NULL,
+    Email VARCHAR(50) NOT NULL,
+    RankID INT NOT NULL,
+    TitleID INT NOT NULL,
+    EducatorstatusID INT NOT NULL
+    ); 
+    
+CREATE TABLE IF NOT EXISTS EducatorStatus(
+    EducatorstatusID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(20) NOT NULL
+    );
+    
+CREATE TABLE IF NOT EXISTS Faculties(
+    FacultyID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(20) NOT NULL
+    );
+ 
+CREATE TABLE IF NOT EXISTS Cities(
+    CityID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Stateid INT NOT NULL,
+    Name VARCHAR(100) NOT NULL,
+    Postnumber VARCHAR(10) NOT NULL
+    );
+    
+CREATE TABLE IF NOT EXISTS WaysOfStuding(
+    WayOfStudyID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL
+    );
+   
+CREATE TABLE IF NOT EXISTS Departments(
+    DepartmentID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL
+    );
+   
+CREATE TABLE IF NOT EXISTS Plans(
+    PlanID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    SchoolYearID INT NOT NULL,
+    SubjectID INT NOT NULL,
+    EducatorID INT NOT NULL
+    );
+ 
+CREATE TABLE IF NOT EXISTS Subjects(
+    SubjectID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(150),
+    SubjectStatus BIT NOT NULL
+    );
+    
+CREATE TABLE IF NOT EXISTS SchoolYears(
+    SchoolYear INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+    );
+ 
+    
+CREATE TABLE IF NOT EXISTS Statuses(
+    StatusID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL
+    );
+ 
+    
+CREATE TABLE IF NOT EXISTS Students(
+    StudentID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    FacultyID INT NOT NULL,
+    DepartmentID INT NOT NULL,
+    CaseNO VARCHAR(15) NOT NULL,
+    Surname VARCHAR(50) NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Parentname VARCHAR(50),
+    Birthdate DATETIME NOT NULL,
+    Jmb VARCHAR(13) NOT NULL,
+    BirthTown VARCHAR(100),
+    BirthCityID INT NOT NULL,
+    BirthStateID INT NOT NULL,
+    Adress VARCHAR(200),
+    CityID INT NOT NULL,
+    StateID INT NOT NULL,
+    Email VARCHAR(150) NOT NULL
+    );
+ 
+ 
+CREATE TABLE IF NOT EXISTS StudentsHistory(
+    StudentHistory INT NOT NULL,
+    StudentID INT NOT NULL,
+    SchoolYear INT,
+    YearOfStudy VARCHAR(10),
+    DateBegSemeseter DATETIME,
+    SignedSemester VARCHAR(50),
+    DateOfCertifiedSemester DATETIME,
+    WayOfStudy VARCHAR(50),
+    Status VARCHAR(50),
+    Notes TEXT
+    );
+
+CREATE TABLE IF NOT EXISTS StudentGrades(
+	StudentGradeID INT NOT NULL PRIMARY KEY,
+	StudentID INT NOT NULL,
+	SubjectID INT NOT NULL,
+	EducatorID INT NOT NULL,
+	Date DATETIME NOT NULL,
+	Grade INT NOT NULL,
+	Committee BIT NOT NULL,
+	Member1 VARCHAR(150) NOT NULL,
+	Member2 VARCHAR(150) NOT NULL,
+	Member3 VARCHAR(150) NOT NULL
+	);
+
+CREATE TABLE IF NOT EXISTS StudentSemesters(
+	StudentSemesterID INT NOT NULL PRIMARY KEY,
+	StudentID INT NOT NULL,
+	EnrolledSemester VARCHAR(50) NOT NULL,
+	EnrolledSemesterDate DATETIME NOT NULL,
+	CertifiedSemester VARCHAR(50) NOT NULL,
+	CertifiedSemesterDate DATETIME NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS StudentStatuses(
+	StudentStatusID INT NOT NULL PRIMARY KEY,
+	StudentID INT NOT NULL,
+	DateOfRegistration DATETIME NOT NULL, #Datum upisa studenta
+	SchoolYear INT NOT NULL,
+	StudentPlan VARCHAR(50) NOT NULL,
+	SchoolYearOfRegistration VARCHAR(50) NOT NULL,
+	CurrentSchoolYear VARCHAR(50) NOT NULL,
+	YearOfStudy VARCHAR(50) NOT NULL,
+	WayOfStudyID INT NOT NULL,
+	StatusID INT NOT NULL,
+	Obnova BIT NOT NULL
+	);
+
+CREATE TABLE IF NOT EXISTS Titles(
+    TitleID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS Ranks(
+    RankID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL
+    );
