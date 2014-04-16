@@ -2,23 +2,17 @@
 package com.ibu;
 
 import com.ibu.DatabaseHelper.Country;
+import com.ibu.crud.*;
 
 public class University {
 
 	public static void main(String[] args) {
-		Student Said = new Student();
-		Said.SetName("Said");
-		Said.SetSurname("Sikira");
-		Said.SetBirthTown(null);
-		Said.SetBirthCity("Zenica");
-		Said.SetBirthCountry(Country.BiH);
-		Said.SetDateOfBirth(19,3,1995);
-		Said.SetCurrentAdress("Senada Poturka Senčija 76A");
-		Said.SetCurrentTown("Dobrinja");
-		Said.SetCurrentCity("Sarajevo");
-		Said.SetCurrentCountry(Country.BiH);
-		Said.SetMobile("+38762628381");
-		Said.InsertIntoDatabase();
+		CRUD crud = new CRUD();
+//		if(crud.InsertIntoStates("Turkey"))
+//		{
+//			System.out.println("New country inserted");
+//		}
+		
 	}
 
 }
