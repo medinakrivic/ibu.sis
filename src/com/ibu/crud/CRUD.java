@@ -145,7 +145,69 @@ public class CRUD {
 			e.printStackTrace();
 		}
 		return Updated;
+	}
+	
+	public boolean InsertIntoRanks(String name)
+	{
+		boolean inserted = false;
+		java.sql.PreparedStatement query;
+		
+		try
+		{
+			String sql = "INSERT INTO Ranks VALUES(?,?)";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, 0);
+			query.setString(2, name);
+			query.execute();
+			inserted = true;
 		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return inserted;
+	}
+	
+	public boolean DeleteFromRanks(int id)
+	{
+		boolean deleted = false;
+		java.sql.PreparedStatement query;
+		
+		try
+		{
+			String sql = "DELETE FROM Ranks WHERE RankID =?";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1,id);
+			query.execute();
+			deleted = true;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return deleted;
+	}
+	
+	public boolean UpdateRanks(int id,String name)
+	{
+		boolean updated = false;
+		
+		java.sql.PreparedStatement query;
+		
+		try
+		{
+			String sql = "UPDATE Ranks SET Name=? WHERE RankID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setString(1, name);
+			query.setInt(2, id);
+			query.execute();
+			updated = true;
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return updated;
+	}
 	
 	
 	
