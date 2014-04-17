@@ -209,6 +209,21 @@ public class CRUD {
 		return updated;
 	}
 	
-	
+	public boolean InsertLoginInformation(int StudentID,String password)
+	{
+		boolean inserted = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "INSERT INTO StudentLoginInfo VALUES(?,AES_ENCRYPT(?,'supersecretkey'))";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, StudentID);
+			query.setString(2, password);
+			query.execute();
+			inserted = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return inserted;
+	}
 	
 }
