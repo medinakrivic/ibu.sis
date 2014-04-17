@@ -34,9 +34,7 @@ public class CRUD {
 			query.execute();
 			inserted = true;
 		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+		catch (SQLException e) {e.printStackTrace();}
 		
 		return inserted;
 	}
@@ -54,9 +52,7 @@ public class CRUD {
 			query.execute();
 			deleted = true;
 		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+		catch (SQLException e) {e.printStackTrace();}
 		
 		return deleted;
 	}
@@ -75,10 +71,8 @@ public class CRUD {
 			query.setInt(2, id);
 			query.execute();
 			updated = true;
-		} catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		} 
+		catch (SQLException e) {e.printStackTrace();}
 		return updated;
 	}
 	
@@ -97,10 +91,7 @@ public class CRUD {
 			query.execute();
 			Inserted = true;
 		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		catch (SQLException e) {e.printStackTrace();}
 		return Inserted;
 		}
 	
@@ -118,10 +109,7 @@ public class CRUD {
 			query.execute();
 			Deleted = true;
 		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		catch (SQLException e) {e.printStackTrace();}
 		return Deleted;
 		}
 	
@@ -140,10 +128,7 @@ public class CRUD {
 			query.execute();
 			Updated = true;
 		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		catch (SQLException e) {e.printStackTrace();}
 		return Updated;
 	}
 	
@@ -161,9 +146,7 @@ public class CRUD {
 			query.execute();
 			inserted = true;
 		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+		catch (SQLException e) {e.printStackTrace();}
 		
 		return inserted;
 	}
@@ -181,9 +164,7 @@ public class CRUD {
 			query.execute();
 			deleted = true;
 		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+		catch (SQLException e) {e.printStackTrace();}
 		
 		return deleted;
 	}
@@ -202,10 +183,8 @@ public class CRUD {
 			query.setInt(2, id);
 			query.execute();
 			updated = true;
-		} catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		} 
+		catch (SQLException e) {e.printStackTrace();}
 		return updated;
 	}
 	
