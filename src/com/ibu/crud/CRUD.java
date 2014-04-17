@@ -62,4 +62,27 @@ public class CRUD {
 		
 		return deleted;
 	}
+	
+	public boolean UpdateStates(int id,String name)
+	{
+		boolean updated = false;
+		
+		java.sql.PreparedStatement query;
+		
+		try
+		{
+			String sql = "UPDATE States SET Name=? WHERE StateID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setString(1, name);
+			query.setInt(2, id);
+			query.execute();
+			updated = true;
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return updated;
+	}
+	
+	
 }
