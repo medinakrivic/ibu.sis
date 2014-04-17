@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.ibu.database.HelperService;
-import com.mysql.jdbc.PreparedStatement;
 
 public class CRUD {
 	HelperService StudentIS = new HelperService();
@@ -13,8 +12,7 @@ public class CRUD {
 	
 	public CRUD()
 	{
-	
-		if(StudentIS.getConnection("said","1234","jdbc:mysql://localhost:3306/studentis"))
+		if(StudentIS.getConnection("BurchAdmin","hemuli","jdbc:mysql://localhost:3306/studentis"))
 		{
 			dbconnection = StudentIS.dbconnection;
 			isConnectionOpened = true;
@@ -83,6 +81,72 @@ public class CRUD {
 		}
 		return updated;
 	}
+	
+	public boolean InsertIntoFaculties(String name) //Sakib
+	{
+		boolean Inserted = false;
+		
+		java.sql.PreparedStatement query;
+		
+		try
+		{
+			String sql = "INSERT INTO Faculties VALUES (?,?)";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, 0);
+			query.setString(2, name);
+			query.execute();
+			Inserted = true;
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return Inserted;
+		}
+	
+	public boolean DeleteFromFaculties(int id)         //Sakib
+	{
+		boolean Deleted = false;
+		
+		java.sql.PreparedStatement query;
+		
+		try
+		{
+			String sql = "DELETE FROM Faculties WHERE FacultyID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, id);
+			query.execute();
+			Deleted = true;
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return Deleted;
+		}
+	
+	public boolean UpdateFaculties(int id, String name)        //Sakib
+	{
+		boolean Updated = false;
+		
+		java.sql.PreparedStatement query;
+		
+		try
+		{
+			String sql = "UPDATE Faculties SET Name=? WHERE FacultyID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setString(1,name);
+			query.setInt(2, id);
+			query.execute();
+			Updated = true;
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return Updated;
+		}
+	
 	
 	
 }
