@@ -12,12 +12,13 @@ public class CRUD {
 	
 	public CRUD()
 	{
-		if(StudentIS.getConnection("BurchAdmin","hemuli","jdbc:mysql://localhost:3306/studentis"))
+		if(StudentIS.getConnection())
 		{
 			dbconnection = StudentIS.dbconnection;
 			isConnectionOpened = true;
-			System.out.println("Opened conection");
+			System.out.println("Connection is opened");
 		}
+
 	}
 	
 	public boolean InsertIntoStates(String name)

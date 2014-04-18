@@ -7,10 +7,6 @@ public class University {
 
 	public static void main(String[] args) {
 		CRUD crud = new CRUD();
-		if (!crud.UpdateStates(6, "Canada"))
-		{
-			System.err.println("error");
-		}
 	}
 
 }
