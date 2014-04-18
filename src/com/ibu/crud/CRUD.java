@@ -206,4 +206,170 @@ public class CRUD {
 		return inserted;
 	}
 	
+	public boolean InsertIntoTitles(String name)// Sakib
+	{
+		boolean inserted = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "INSERT INTO Titles VALUES(?,?)";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, 0);
+			query.setString(2, name);
+			query.execute();
+			inserted = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return inserted;
+	}
+	
+	public boolean DeleteFromTitles(int id) // Sakib
+	{
+		boolean deleted = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "DELETE FROM Titles WHERE TitleID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, id);
+			query.execute();
+			deleted = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return deleted;
+	}
+	
+	public boolean UpdateTitles(int id ,String name)//Sakib
+	{
+		boolean updated = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "UPDATE Titles SET Name=? WHERE TitleID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setString(1, name);
+			query.setInt(2, id);
+			query.execute();
+			updated = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return updated;
+	}
+	
+	public boolean InsertIntoEducatorStatus(String name) //Sakib
+	{
+		boolean inserted = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "INSERT INTO EducatorStatus VALUES(?,?)";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, 0);
+			query.setString(2, name);
+			query.execute();
+			inserted = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return inserted;
+	}
+	
+	public boolean DeleteFromEducatorStatus(int id) //Sakib
+	{
+		boolean deleted = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "DELETE FROM EducatorStatus WHERE EducatorStatusID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, id);
+			query.execute();
+			deleted = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return deleted;
+	}
+	
+	public boolean UpdateEducatorStatus(int id ,String name) //Sakib
+	{
+		boolean updated = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "UPDATE EducatorStatus SET Name=? WHERE EducatorStatusID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setString(1, name);
+			query.setInt(2, id);
+			query.execute();
+			updated = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return updated;
+	}
+	
+	public boolean InsertIntoStatuses(String name) // Sakib
+	{
+		boolean inserted = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "INSERT INTO Statuses VALUES(?,?)";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, 0);
+			query.setString(2, name);
+			query.execute();
+			inserted = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return inserted;
+	}
+	
+	public boolean DeleteFromStatuses(int id) //Sakib
+	{
+		boolean deleted = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "DELETE FROM Statuses WHERE StatusID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, id);
+			query.execute();
+			deleted = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return deleted;
+	}
+	
+	public boolean UpdateStatuses(int id ,String name) //Sakib
+	{
+		boolean updated = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "UPDATE Statuses SET Name=? WHERE StatusID=?";
+			query = dbconnection.prepareStatement(sql);
+			query.setString(1, name);
+			query.setInt(2, id);
+			query.execute();
+			updated = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return updated;
+	}
+	
+	public boolean InsertIntoDepartments(String name) // Sakib
+	{
+		boolean inserted = false;
+		java.sql.PreparedStatement query;
+		try
+		{
+			String sql = "INSERT INTO Departments VALUES(?,?)";
+			query = dbconnection.prepareStatement(sql);
+			query.setInt(1, 0);
+			query.setString(2, name);
+			query.execute();
+			inserted = true;
+		}
+		catch (SQLException e) {e.printStackTrace();}
+		return inserted;
+	}
 }
