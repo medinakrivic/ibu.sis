@@ -372,4 +372,96 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return inserted;
 	}
+	
+	public boolean DeleteFromDepartments(int id)//Medina
+	{  boolean updated = false;
+	   java.sql.PreparedStatement query;
+	   try
+	   { String sql ="DELETE FROM Departments WHERE DepartmentsID = ?";
+		 query = dbconnection.prepareStatement(sql);
+		 query.setInt(1, id);
+		 query.execute();
+		 updated = true;
+	   }
+	   catch(SQLException e)
+	   {
+		   e.printStackTrace();
+	   }
+	   return updated;
+	}
+
+	public boolean UpadateDepartments(int id,String name)//Medina
+	{   boolean updated = false ;
+	    java.sql.PreparedStatement query;
+	    
+	    try
+	    { String sql ="UPDATE Departments SET name = ? WHERE DepartmentsID = ?";
+	      query = dbconnection.prepareStatement(sql);
+	      query.setString(1, name);
+	      query.setInt ( 2, 0);
+	      query.execute();
+	      updated = true;
+	  
+	    }
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	    return updated;
+	}
+   
+	public boolean InsertIntoWayOfStudy(String name)//Medina
+	{ boolean inserted = false;
+	  java.sql.PreparedStatement query;
+	  
+	  try{
+		  String sql = "INSERT INTO WayOfStudy VALUES(?,?)";
+		  query = dbconnection.prepareStatement(sql);
+		  query.setInt(1, 0);
+		  query.setString(2, name);
+		  query.execute();
+		  inserted = true;
+	  }
+	  catch (SQLException e)
+	  {e.printStackTrace();}
+	  return inserted ;
+	  
+	}
+
+	public boolean DeleteFromWayOfStudy(int id)//Medina
+	{  boolean updated = false;
+	   java.sql.PreparedStatement query;
+	   try
+	   { String sql ="DELETE FROM WayOfStudy WHERE WayOfStudyID = ?";
+		 query = dbconnection.prepareStatement(sql);
+		 query.setInt(1, id);
+		 query.execute();
+		 updated = true;
+	   }
+	   catch(SQLException e)
+	   {
+		   e.printStackTrace();
+	   }
+	   return updated;
+	}
+
+	public boolean UpadateWayOfStudy(int id,String name)//Medina
+	{   boolean updated = false ;
+	    java.sql.PreparedStatement query;
+	    
+	    try
+	    { String sql ="UPDATE WayOfStuding SET name = ? WHERE WayOfStudyID = ?";
+	      query = dbconnection.prepareStatement(sql);
+	      query.setString(1, name);
+	      query.setInt ( 2, 0);
+	      query.execute();
+	      updated = true;
+	  
+	    }
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	    return updated;
+	}
 }
