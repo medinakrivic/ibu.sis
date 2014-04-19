@@ -6,10 +6,11 @@ import java.sql.SQLException;
 import com.ibu.database.HelperService;
 
 public class CRUD {
-	HelperService StudentIS = new HelperService();
+	HelperService StudentIS = new HelperService(); 
 	public Connection dbconnection = null;
-	public boolean isConnectionOpened = false;
+	public boolean isConnectionOpened = false; //Check if connection to database is opened
 	
+	//Default constructor, gets connection from HelperService.java
 	public CRUD()
 	{
 		if(StudentIS.getConnection())
@@ -18,9 +19,20 @@ public class CRUD {
 			isConnectionOpened = true;
 			System.out.println("Connection is opened");
 		}
-
 	}
 	
+	//Second constructor, takes connection as argument
+	public CRUD(Connection DatabaseConnection) throws SQLException
+	{
+		if (!DatabaseConnection.isClosed()){
+			dbconnection = DatabaseConnection;
+			isConnectionOpened = true;
+		}
+	}
+	
+	/*
+	 * Table States:
+	 */
 	public boolean InsertIntoStates(String name)
 	{
 		boolean inserted = false;
@@ -39,7 +51,6 @@ public class CRUD {
 		
 		return inserted;
 	}
-	
 	public boolean DeleteFromStates(int id)
 	{
 		boolean deleted = false;
@@ -57,7 +68,6 @@ public class CRUD {
 		
 		return deleted;
 	}
-	
 	public boolean UpdateStates(int id,String name)
 	{
 		boolean updated = false;
@@ -76,8 +86,11 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return updated;
 	}
-	
-	public boolean InsertIntoFaculties(String name) //Sakib
+
+	/*
+	 * Table Faculties:
+	 */
+	public boolean InsertIntoFaculties(String name)
 	{
 		boolean Inserted = false;
 		
@@ -95,8 +108,7 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return Inserted;
 		}
-	
-	public boolean DeleteFromFaculties(int id)         //Sakib
+	public boolean DeleteFromFaculties(int id)
 	{
 		boolean Deleted = false;
 		
@@ -112,9 +124,8 @@ public class CRUD {
 		}
 		catch (SQLException e) {e.printStackTrace();}
 		return Deleted;
-		}
-	
-	public boolean UpdateFaculties(int id, String name)        //Sakib
+	}
+	public boolean UpdateFaculties(int id, String name)
 	{
 		boolean Updated = false;
 		
@@ -133,6 +144,9 @@ public class CRUD {
 		return Updated;
 	}
 	
+	/*
+	 * Table Ranks
+	 */
 	public boolean InsertIntoRanks(String name)
 	{
 		boolean inserted = false;
@@ -148,15 +162,13 @@ public class CRUD {
 			inserted = true;
 		}
 		catch (SQLException e) {e.printStackTrace();}
-		
 		return inserted;
 	}
-	
 	public boolean DeleteFromRanks(int id)
 	{
 		boolean deleted = false;
 		java.sql.PreparedStatement query;
-		
+	
 		try
 		{
 			String sql = "DELETE FROM Ranks WHERE RankID =?";
@@ -166,10 +178,8 @@ public class CRUD {
 			deleted = true;
 		}
 		catch (SQLException e) {e.printStackTrace();}
-		
 		return deleted;
 	}
-	
 	public boolean UpdateRanks(int id,String name)
 	{
 		boolean updated = false;
@@ -189,6 +199,9 @@ public class CRUD {
 		return updated;
 	}
 	
+	/*
+	 * TODO: Login Info
+	 */
 	public boolean InsertLoginInformation(int StudentID,String password)
 	{
 		boolean inserted = false;
@@ -206,7 +219,10 @@ public class CRUD {
 		return inserted;
 	}
 	
-	public boolean InsertIntoTitles(String name)// Sakib
+	/*
+	 * Table Titles
+	 */
+	public boolean InsertIntoTitles(String name)
 	{
 		boolean inserted = false;
 		java.sql.PreparedStatement query;
@@ -222,8 +238,7 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return inserted;
 	}
-	
-	public boolean DeleteFromTitles(int id) // Sakib
+	public boolean DeleteFromTitles(int id)
 	{
 		boolean deleted = false;
 		java.sql.PreparedStatement query;
@@ -238,8 +253,7 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return deleted;
 	}
-	
-	public boolean UpdateTitles(int id ,String name)//Sakib
+	public boolean UpdateTitles(int id ,String name)
 	{
 		boolean updated = false;
 		java.sql.PreparedStatement query;
@@ -256,7 +270,10 @@ public class CRUD {
 		return updated;
 	}
 	
-	public boolean InsertIntoEducatorStatus(String name) //Sakib
+	/*
+	 * Table EducatorStatus
+	 */
+	public boolean InsertIntoEducatorStatus(String name)
 	{
 		boolean inserted = false;
 		java.sql.PreparedStatement query;
@@ -272,8 +289,7 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return inserted;
 	}
-	
-	public boolean DeleteFromEducatorStatus(int id) //Sakib
+	public boolean DeleteFromEducatorStatus(int id) 
 	{
 		boolean deleted = false;
 		java.sql.PreparedStatement query;
@@ -288,8 +304,7 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return deleted;
 	}
-	
-	public boolean UpdateEducatorStatus(int id ,String name) //Sakib
+	public boolean UpdateEducatorStatus(int id ,String name)
 	{
 		boolean updated = false;
 		java.sql.PreparedStatement query;
@@ -306,7 +321,10 @@ public class CRUD {
 		return updated;
 	}
 	
-	public boolean InsertIntoStatuses(String name) // Sakib
+	/*
+	 * Table Statuses
+	 */
+	public boolean InsertIntoStatuses(String name)
 	{
 		boolean inserted = false;
 		java.sql.PreparedStatement query;
@@ -322,8 +340,7 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return inserted;
 	}
-	
-	public boolean DeleteFromStatuses(int id) //Sakib
+	public boolean DeleteFromStatuses(int id)
 	{
 		boolean deleted = false;
 		java.sql.PreparedStatement query;
@@ -338,8 +355,7 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return deleted;
 	}
-	
-	public boolean UpdateStatuses(int id ,String name) //Sakib
+	public boolean UpdateStatuses(int id ,String name)
 	{
 		boolean updated = false;
 		java.sql.PreparedStatement query;
@@ -356,7 +372,10 @@ public class CRUD {
 		return updated;
 	}
 	
-	public boolean InsertIntoDepartments(String name) // Sakib
+	/*
+	 * Table Departments
+	 */
+	public boolean InsertIntoDepartments(String name)
 	{
 		boolean inserted = false;
 		java.sql.PreparedStatement query;
@@ -372,8 +391,7 @@ public class CRUD {
 		catch (SQLException e) {e.printStackTrace();}
 		return inserted;
 	}
-	
-	public boolean DeleteFromDepartments(int id)//Medina
+	public boolean DeleteFromDepartments(int id)
 	{  boolean updated = false;
 	   java.sql.PreparedStatement query;
 	   try
@@ -389,8 +407,7 @@ public class CRUD {
 	   }
 	   return updated;
 	}
-
-	public boolean UpadateDepartments(int id,String name)//Medina
+	public boolean UpadateDepartments(int id,String name)
 	{   boolean updated = false ;
 	    java.sql.PreparedStatement query;
 	    
@@ -410,7 +427,10 @@ public class CRUD {
 	    return updated;
 	}
    
-	public boolean InsertIntoWayOfStudy(String name)//Medina
+	/*
+	 * Table WayOfStudy
+	 */
+	public boolean InsertIntoWayOfStudy(String name)
 	{ boolean inserted = false;
 	  java.sql.PreparedStatement query;
 	  
@@ -424,11 +444,9 @@ public class CRUD {
 	  }
 	  catch (SQLException e)
 	  {e.printStackTrace();}
-	  return inserted ;
-	  
+	  return inserted ; 
 	}
-
-	public boolean DeleteFromWayOfStudy(int id)//Medina
+	public boolean DeleteFromWayOfStudy(int id)
 	{  boolean updated = false;
 	   java.sql.PreparedStatement query;
 	   try
@@ -444,8 +462,7 @@ public class CRUD {
 	   }
 	   return updated;
 	}
-
-	public boolean UpadateWayOfStudy(int id,String name)//Medina
+	public boolean UpadateWayOfStudy(int id,String name)
 	{   boolean updated = false ;
 	    java.sql.PreparedStatement query;
 	    
