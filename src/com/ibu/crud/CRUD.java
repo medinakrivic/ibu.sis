@@ -447,20 +447,20 @@ public class CRUD {
 	  return inserted ; 
 	}
 	public boolean DeleteFromWayOfStudy(int id)
-	{  boolean updated = false;
+	{
 	   java.sql.PreparedStatement query;
 	   try
 	   { String sql ="DELETE FROM WayOfStudy WHERE WayOfStudyID = ?";
 		 query = dbconnection.prepareStatement(sql);
 		 query.setInt(1, id);
 		 query.execute();
-		 updated = true;
+		 return true;
 	   }
 	   catch(SQLException e)
 	   {
 		   e.printStackTrace();
 	   }
-	   return updated;
+	   return false;
 	}
 	public boolean UpadateWayOfStudy(int id,String name)
 	{   boolean updated = false ;
@@ -481,4 +481,66 @@ public class CRUD {
 		}
 	    return updated;
 	}
+
+	/*
+	 * Table Cities
+	 */
+	public boolean InsertIntoCites(int StateID, String name,String PostNumber)
+	{
+		  java.sql.PreparedStatement query;
+		  
+		  try{
+			  String sql = "INSERT INTO Cities VALUES(?,?,?,?)";
+			  query = dbconnection.prepareStatement(sql);
+			  query.setInt(1, 0);
+			  query.setInt(2,StateID);
+			  query.setString(3, name);
+			  query.setString(4, PostNumber);
+			  query.execute();
+			  return true;
+		  }
+		  catch (SQLException e)
+		  {e.printStackTrace();}
+		  return false;
+	}
+	public boolean DeleteFromCities(int id)
+	{
+		java.sql.PreparedStatement query;
+		try
+		   { String sql ="DELETE FROM StudentIS.Cities WHERE CityID = ?";
+			 query = dbconnection.prepareStatement(sql);
+			 query.setInt(1, id);
+			 query.execute();
+			 System.out.println("delted");
+			 return true;
+		   }
+		   catch(SQLException e)
+		   {
+			   e.printStackTrace();
+		   }
+		return false;
+	}
+	public boolean UpadateCity(int id,int StateID,String name,String PostNumber)
+	{   boolean updated = false ;
+	    java.sql.PreparedStatement query;
+	    
+	    try
+	    { String sql ="UPDATE Cities SET StateID = ?, Name=?, PostNumber=? WHERE CityID = ?";
+	      query = dbconnection.prepareStatement(sql);
+	      query.setInt(1, StateID);
+		  query.setString(2,name);
+		  query.setString(3, PostNumber);
+		  query.setInt(4, id);
+	      query.execute();
+	      updated = true;
+	  
+	    }
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	    return updated;
+	}
+
+	
 }
