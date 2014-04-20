@@ -2,11 +2,13 @@
 package com.ibu;
 
 import com.ibu.crud.*;
+import com.ibu.fx.*;
 
-public class University {
+public class University{
 
 	public static void main(String[] args) {
-		CRUD crud = new CRUD();
+		//GUI fx = new GUI();
+		//fx.main(args);
 	}
 
 }
