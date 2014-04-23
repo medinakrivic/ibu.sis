@@ -1,4 +1,5 @@
 package com.ibu.crud;
+package java.util.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,7 +20,8 @@ public class CRUD {
 	public departments Departments = new departments();
 	public wayofstuding WayOfStuding = new wayofstuding();
 	public cities Cities = new cities();
-	
+	public educators Educators = new educators();
+	public studentgrades StudentGrades = new studentgrades();
 	
 	//Default constructor, gets connection from HelperService.java
 	public CRUD()
@@ -607,7 +609,456 @@ public class CRUD {
 		}
 	}
 	
-	public class Educators{
-		//TODO :Implement
+	public class educators{
+		public boolean InsertIntoEducators(String Surname,String name,String adress,int cityID,String phone, String email,int rankID,int titleID,int educatorstatusesID)
+		{
+			  java.sql.PreparedStatement query;
+			  
+			  try{
+				  String sql = "INSERT INTO Educators VALUES(?,?,?,?,?,?,?,?,?,?)";
+				  query = dbconnection.prepareStatement(sql);
+				  query.setInt(1, 0);
+				  query.setString(2, Surname);
+				  query.setString(3, name);
+				  query.setString(4, adress);
+				  query.setInt(5, cityID);
+				  query.setString(6, phone);
+				  query.setString(7, email);
+				  query.setInt(8, rankID);
+				  query.setInt(9, titleID);
+				  query.setInt(10, educatorstatusesID);
+				  query.execute();
+				  return true;
+			  }
+			  catch (SQLException e)
+			  {e.printStackTrace();}
+			  return false;
+		}
+		
+		public boolean DeleteFromEducators(int id)
+		{
+			java.sql.PreparedStatement query;
+			try
+			   { String sql ="DELETE FROM StudentIS.Educators WHERE EducatorID = ?";
+				 query = dbconnection.prepareStatement(sql);
+				 query.setInt(1, id);
+				 query.execute();
+				 System.out.println("delted");
+				 return true;
+			   }
+			   catch(SQLException e)
+			   {
+				   e.printStackTrace();
+			   }
+			return false;
+		}
+		
+		public boolean UpadateEducatorCity(int EducatorID,int CityID)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET cityID = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+			  query.setInt(1, CityID);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateEducatorRank(int EducatorID,int RankID)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET RankID = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setInt(1, RankID);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateEducatorTitle(int EducatorID,int TitleID)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET TitleID = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setInt(1, TitleID);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateEducatorStatus(int EducatorID,int EducatorStatusID)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET EducatorstatusID = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setInt(1, EducatorStatusID);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateEducatorSurname(int EducatorID,String Surname)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET Surname = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Surname);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateEducatorName(int EducatorID,String Name)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET Name = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Name);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateEducatorAdress(int EducatorID,String Adress)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET Adress = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Adress);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateEducatorPhone(int EducatorID,String Phone)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET Phone = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Phone);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateEducatorEmail(int EducatorID,String Email)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE Educators SET Email = ? WHERE EducatorID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Email);
+			  query.setInt(2, EducatorID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
 	}
+	/*                          Siki pogledaj ovdje ove varijable za datum ..
+	public class studentgrades{
+		public boolean InsertIntoStudentGrades(int StudentID,int SubjectID,int EducatorID, Date Gradedate ,String Grade,String Committee,String Member1, String Member2, String Member3)
+		{
+			  java.sql.PreparedStatement query;
+			  
+			  try{
+				  String sql = "INSERT INTO studentgrades VALUES(?,?,?,?,?,?,?,?,?,?)";
+				  query = dbconnection.prepareStatement(sql);
+				  query.setInt(1, 0);
+				  query.setInt(2,StudentID);
+				  query.setInt(3,SubjectID);
+				  query.setInt(4,EducatorID);
+				  query.setDate(5, Gradedate);
+				  query.setString(6, Grade);
+				  query.setString(7, Committee);
+				  query.setString(8,Member1);
+				  query.setString(9,Member2);
+				  query.setString(10,Member3);
+				  query.execute();
+				  return true;
+			  }
+			  catch (SQLException e)
+			  {e.printStackTrace();}
+			  return false;
+		}
+		public boolean DeleteFromStudentGrades(int id)
+		{
+			java.sql.PreparedStatement query;
+			try
+			   { String sql ="DELETE FROM StudentIS.studentgrades WHERE StudentGradeID = ?";
+				 query = dbconnection.prepareStatement(sql);
+				 query.setInt(1, id);
+				 query.execute();
+				 System.out.println("delted");
+				 return true;
+			   }
+			   catch(SQLException e)
+			   {
+				   e.printStackTrace();
+			   }
+			return false;
+		}
+		
+		public boolean UpadateStudentGradeStudent(int StudentGradeID,int StudentID)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET StudentID = ? WHERE StudentGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+			  query.setInt(1, StudentID);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateStudentGradeSubject(int StudentGradeID,int SubjectID)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET SubjectID = ? WHERE StudentGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+			  query.setInt(1, SubjectID);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateStudentGradeEducator(int StudentGradeID,int EducatorID)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET EducatorID = ? WHERE StudentGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+			  query.setInt(1, EducatorID);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateStudentGradeDate(int StudentGradeID,Date date)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET Date = ? WHERE StudentGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+			  query.setDate(1, date);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateStudentGrade(int StudentGradeID,String Grade)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET Grade = ? WHERE StudetnGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Grade);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateStudentCommittee(int StudentGradeID,Boolean Committee )
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET Committee = ? WHERE StudetnGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setBoolean(1, Committee);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateStudentCommitteeMember1(int StudentGradeID,String Member1)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET Member1 = ? WHERE StudetnGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Member1);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateStudentCommitteeMember2(int StudentGradeID,String Member2)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET Member2 = ? WHERE StudetnGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Member2);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		
+		public boolean UpadateStudentCommitteeMember3(int StudentGradeID,String Member3)
+		{   boolean updated = false ;
+		    java.sql.PreparedStatement query;
+		    
+		    try
+		    { String sql ="UPDATE studentgrades SET Member3 = ? WHERE StudetnGradeID = ?";
+		      query = dbconnection.prepareStatement(sql);
+		      query.setString(1, Member3);
+			  query.setInt(2, StudentGradeID);
+		      query.execute();
+		      updated = true;
+		  
+		    }
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		    return updated;
+		}
+		*/
+		
+	}
+	
 }
